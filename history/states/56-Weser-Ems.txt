@@ -22,6 +22,8 @@ state={
 			241 = {
 				naval_base = 8
 
+			}
+
 
 		}
 		add_core_of = GER
