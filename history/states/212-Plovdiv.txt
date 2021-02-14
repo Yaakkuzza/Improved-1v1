@@ -7,6 +7,25 @@ state={
 	state_category = large_town
 
 
+
+	history={
+		owner = GER
+		victory_points = { #Plovdiv
+			6923 10
+		}
+		victory_points = { #Stara Zagora
+			6814 3
+		}
+		victory_points = { #Haskovo
+			9862 1
+		}
+		buildings = {
+			infrastructure = 8
+	
+		}
+		add_core_of = GER
+	}
+
 	provinces={
 		878 893 3937 6814 6857 6923 6952 6982 9818 9862 11813 
 	}

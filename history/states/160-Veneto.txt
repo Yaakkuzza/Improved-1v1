@@ -5,6 +5,24 @@ state={
 	
 	state_category = large_city
 
+	history={
+		owner = GER
+		victory_points = {
+			11584 10 
+		}
+		buildings = {
+			infrastructure = 8
+
+			11584 = {
+				naval_base = 6
+
+			}
+
+		}
+		add_core_of = GER
+
+
+	}
 
 	provinces={
 		603 628 3604 3657 6656 9582 9613 11584 
