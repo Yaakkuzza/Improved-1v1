@@ -2,17 +2,6 @@ state={
 	id=665
 	name="STATE_665"
 
-	history={
-		owner = FRA
-		add_core_of = TUN
-		victory_points = {
-			7005 1 
-		}
-		buildings = {
-			infrastructure = 3
-
-		}
-	}
 	
 	state_category = pastoral
 

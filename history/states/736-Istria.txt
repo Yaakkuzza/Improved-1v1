@@ -8,13 +8,10 @@ state={
 		victory_points = {
 			6626 1 
 		}
-		owner = ITA
-		add_core_of = ITA
-		add_core_of = YUG
-		add_core_of = SLV
-		add_core_of = CRO
+		owner = GER
+		add_core_of = GER
 		buildings = {
-			infrastructure = 2
+			infrastructure = 8
 			6626 = {
 				naval_base = 5
 

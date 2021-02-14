@@ -2,21 +2,7 @@ state={
 	id=738
 	name="STATE_738"
 
-	history={
-		owner = INS
-		add_core_of = INS
-		buildings = {
-			infrastructure = 1
 
-			4579 = {
-				naval_base = 1
-
-			}
-
-
-		}
-
-	}
 
 	provinces={
 		4579 

@@ -5,15 +5,7 @@ state={
 	
 	state_category = rural
 
-	history={
-		owner = BRA
-		buildings = {
-			infrastructure = 2
 
-		}
-		add_core_of = BRA
-
-	}
 
 	provinces={
 		2111 2181 5200 8189 8224 10959 12951 
