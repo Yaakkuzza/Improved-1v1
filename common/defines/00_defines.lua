@@ -8,9 +8,9 @@ NGame = {
 	CHECKSUM_SALT = "zwOdv5d9wm9uDSOT",				-- Data to modify generated checksum when game binaries have changed but not any content files.
 	LAG_DAYS_FOR_LOWER_SPEED = 10,					-- Days of client lag for decrease of gamespeed
 	LAG_DAYS_FOR_PAUSE = 25,						-- Days of client lag for pause of gamespeed.
-	GAME_SPEED_SECONDS = { 2.0, 0.5, 0.2, 0.1, 0.0 }, -- game speeds for each level. Must be 5 entries with last one 0 for unbound
+	GAME_SPEED_SECONDS = { 1, 0.5, 0.2, 0.1, 0.0 }, -- game speeds for each level. Must be 5 entries with last one 0 for unbound
 	MAJOR_PARTICIPANTS_FOR_MAJOR_WAR = 3,			-- Minimum number of major countries involved in a war to consider it major enough to not end the game even though the enddate has been reached.
-	COMBAT_LOG_MAX_MONTHS = 12,
+	COMBAT_LOG_MAX_MONTHS = 48,
 	MESSAGE_TIMEOUT_DAYS = 60,						-- Useful if running the handsoff game. The popup messages that doesn't require the player respond will automatically hide after some timeout.	
 	AIR_LOG_TIMEOUT_HOURS = 24,						-- Data storring data
 	EVENT_TIMEOUT_DEFAULT = 13,						-- Default days before an event times out if not scripted
@@ -168,7 +168,7 @@ NCountry = {
 	EVENT_PROCESS_OFFSET = 20,						-- Events are checked every X day per country or state (1 is ideal, but CPU heavy)
 	BASE_RESEARCH_SLOTS = 2,						-- Base number of research slots per country.
 	VP_TO_SUPPLY_BASE = 1,							-- Bonus to supply from a VP, no matter the level
-	VP_TO_SUPPLY_BONUS_CONVERSION = 0.1,			-- Bonus to supply local supplies from Victory Points, multiplied by this aspect and rounded to closest integer
+	VP_TO_SUPPLY_BONUS_CONVERSION = 0.5,			-- Bonus to supply local supplies from Victory Points, multiplied by this aspect and rounded to closest integer
 	SUPPLY_FROM_DAMAGED_INFRA = 0.3,                -- damaged infrastructure counts as this in supply calcs
 	SUPPLY_BASE_MULT = 1,							-- multiplier on supply base values
 	SUPPLY_BONUS_FROM_INPUT = 0.25,					-- % of supply bonus from input area.
@@ -185,7 +185,7 @@ NCountry = {
 	REINFORCEMENT_AIRBASE_PRIORITY_COUNT = 3,
 	REINFORCEMENT_AIRBASE_PRIORITY_DEFAULT = 1,
 	REINFORCEMENT_DELIVERY_SPEED_MIN = 0.6,			-- The distance from the supply region to capital should affect the speed only a little bit. Main factor for penalty is overcrowded areas, and not the route length.
-	REINFORCEMENT_EQUIPMENT_DELIVERY_SPEED = 0.3,	-- Modifier for army equipment reinforcement speed
+	REINFORCEMENT_EQUIPMENT_DELIVERY_SPEED = 1,	-- Modifier for army equipment reinforcement speed
 	REINFORCEMENT_MANPOWER_DELIVERY_SPEED = 10.0,	-- Modifier for army manpower reinforcement delivery speed (travel time)
 	REINFORCEMENT_MANPOWER_CHUNK = 0.1,				-- Chunk size of manpower reinforcement delivery, in % of total manpower needed by the template.
 	EQUIPMENT_UPGRADE_CHUNK_MAX_SIZE = 10,			-- Maximum chunk size of equipment upgrade distribution per update.
@@ -207,16 +207,16 @@ NCountry = {
 	DEFAULT_STABILITY = 0.5,						-- Default stability if not scripted otherwise.
 	DEFAULT_WAR_SUPPORT = 0.5,						-- Default war support if not scripted otherwise.
 	BASE_STABILITY_WAR_FACTOR = -0.3,				-- Default stability war factor
-	BASE_STABILITY_PARTY_POPULARITY_FACTOR = 0.15,	-- Default stability rulling party popularity factor
+	BASE_STABILITY_PARTY_POPULARITY_FACTOR = 0,	-- Default stability rulling party popularity factor
 	MIN_COUP_STABILITY_FACTOR = 0.0,				-- Min value of coup factor in stability
 	MAX_COUP_STABILITY_FACTOR = 2.0,				-- Max value of coup factor in stability
 	MIN_COUP_SUCCESS_STABILITY = 0.8,				-- Max stability when coup will happen
 	WAR_SUPPORT_OFFNSIVE_WAR = -0.2,				-- Impact of being in offensive war
 	WAR_SUPPORT_DEFENSIVE_WAR = 0.3,				-- Impact of being in defensive war
 	WAR_SUPPORT_TENSION_IMPACT = 0.3,				-- Total impact of world tension
-	MIN_STABILITY = 0.0,
+	MIN_STABILITY = 1.0,
 	MAX_STABILITY = 1.0,
-	MIN_WAR_SUPPORT = 0.0,
+	MIN_WAR_SUPPORT = 1.0,
 	MAX_WAR_SUPPORT = 1.0,
 	FRONT_PROVINCE_SCORE = 20,    					-- Max province score of a front. Used for the hostile troop alert
 	MAJOR_IC_RATIO = 3,                             -- difference in total factories needed to be considered major with respect to other nation
@@ -231,7 +231,7 @@ NCountry = {
 	MAX_INTELLIGENCE_MANPOWER_DATA_DEVIATION = 0.4,	-- (Old Intel) Max deviation in estimating enemy total manpower amount ( 0.0 - 1.0 )
 	MAX_INTELLIGENCE_FIELDED_MANPOWER_DATA_DEVIATION = 0.35, -- (Old Intel) Max deviation in estimating enemy fielded manpower amount ( 0.0 - 1.0 )
 	MAX_INTELLIGENCE_INDUSTRY_DATA_DEVIATION = 0,4, -- (Old Intel) Max deviation in estimating enemy total industry
-	MIN_MANPOWER_RATIO = 0.15,						-- Min manpower ratio to show manpower alert
+	MIN_MANPOWER_RATIO = 0,						-- Min manpower ratio to show manpower alert
 	ARMY_IMPORTANCE_FACTOR = 5.0,					-- Army factor for AI and calculations
 	TERRAIN_IMPORTANCE_FACTOR = 5.0,				-- Terrain base factor for state strategic value
 	VICTORY_POINTS_IMPORTANCE_FACTOR = 5.0,			-- State victory points importance factor for AI and calculations
@@ -256,10 +256,10 @@ NCountry = {
 	AUTONOMOUS_SPILLOVER = 0.025,					-- Total score that can be saved to reach next level
 	CIVIL_WAR_INVOLVEMENT_MIN_TENSION = 0.5,		-- base value of world tension to involve other sides to the civil war
 	UNCAPITULATE_LEVEL = 0.1,                       -- if we reclaim this much and our capital we reset capitulate status
-	BASE_SURRENDER_LIMIT = 0.8,						-- Base level of occupation required for country surrender
-	SURRENDER_LIMIT_MULT_FOR_COUNTRIES_WITH_NO_CORES = 0.7, -- Countries with no owned cores will their surrender level multiplied by this amount
-	MIN_SURRENDER_LIMIT = 0.2,						-- Minimum non-forced surrender limit. valid 0-1
-	BASE_MOBILIZATION_SPEED = 0.01,					-- Base speed of manpower mobilization  #in 1/1000 of 1 %
+	BASE_SURRENDER_LIMIT = 1,						-- Base level of occupation required for country surrender
+	SURRENDER_LIMIT_MULT_FOR_COUNTRIES_WITH_NO_CORES = 1, -- Countries with no owned cores will their surrender level multiplied by this amount
+	MIN_SURRENDER_LIMIT = 1,						-- Minimum non-forced surrender limit. valid 0-1
+	BASE_MOBILIZATION_SPEED = 0,					-- Base speed of manpower mobilization  #in 1/1000 of 1 %
 	
 	INTERCEPTION_WAR_SUPPORT_SCALE = 0.00001,		-- Scaling of interceptions to war support impact
 	INTERCEPTION_BOMBING_WAR_SUPPORT_IMPACT = 0.3,	-- Max impact of interceptions on the war support
@@ -302,21 +302,21 @@ NCountry = {
 	AIR_SUPPLY_CONVERSION_SCALE = 0.05,				-- Conversion scale for planes to air supply
 	AIR_SUPPLY_DROP_EXPIRATION_HOURS = 168,			-- Air drop length after being dropped
 	STARTING_COMMAND_POWER = 0.0,					-- starting command power for every country
-	BASE_MAX_COMMAND_POWER = 100.0,					-- base value for maximum command power
-	BASE_COMMAND_POWER_GAIN = 0.006,				-- base value for daily command power gain
+	BASE_MAX_COMMAND_POWER = 1000.0,					-- base value for maximum command power
+	BASE_COMMAND_POWER_GAIN = 0.1,				-- base value for daily command power gain
 	AIR_VOLUNTEER_PLANES_LIMIT = 0.2,				-- Ratio for volunteer planes available for sending in relation to sender air force
 	AIR_VOLUNTEER_BASES_CAPACITY_LIMIT = 0.1,		-- Ratio for volunteer planes available for sending in relation to receiver air base capacity
 	ATTACHE_XP_SHARE = 0.2,							-- Country received xp from attaches
-	SPECIAL_FORCES_CAP_BASE = 0.05,					-- Max ammount of special forces battalions is total number of non-special forces battalions multiplied by this and modified by a country modifier
+	SPECIAL_FORCES_CAP_BASE = 1,					-- Max ammount of special forces battalions is total number of non-special forces battalions multiplied by this and modified by a country modifier
 	SPECIAL_FORCES_CAP_MIN = 24,					-- You can have a minimum of this many special forces battalions, regardless of the number of non-special forces battalions you have, this can also be modified by a country modifier
 	DAYS_OF_WAR_BEFORE_SURRENDER = 7,				-- Number of days a war has to have existed before anyone can surrender in it
 	
 	FUEL_LEASE_CONVOY_RATIO = 0.0005,				-- num convoys needed per fuel land lease 
 	
-	STARTING_FUEL_RATIO = 0.25,						-- starting fuel ratio compared to max fuel for countries
-	BASE_FUEL_GAIN_PER_OIL = 2,						-- base amount of fuel gained hourly per excess oil
-	BASE_FUEL_GAIN = 2.0,							-- base amount of fuel gained hourly, independent of excess oil
-	BASE_FUEL_CAPACITY = 50000,						-- base amount of fuel capacity
+	STARTING_FUEL_RATIO = 1,						-- starting fuel ratio compared to max fuel for countries
+	BASE_FUEL_GAIN_PER_OIL = 1000,						-- base amount of fuel gained hourly per excess oil
+	BASE_FUEL_GAIN = 1,							-- base amount of fuel gained hourly, independent of excess oil
+	BASE_FUEL_CAPACITY = 1000000,						-- base amount of fuel capacity
 
 	COUNTRY_MANPOWER_CAPITULATED_FREE_POOL_FACTOR = 0.1,	-- Factor on amount of normal manpower left for an exiled nation with no territory.
 	COUNTRY_MANPOWER_CAPITULATED_CORE_GAIN_FACTOR = 0.001,	-- Factor on amount of normal manpower gained for the exile nation. From owned states that are controlled by an enemy. State manpower reduced by factor 1000 in code.
@@ -369,17 +369,17 @@ NCountry = {
 },
 
 NResistance = {
-	INITIAL_STATE_RESISTANCE = 1.0,							-- initial resistance percentage of a state once it is captured
-	INITIAL_STATE_COMPLIANCE = 0.0,							-- initial compliance percentage of a state once it is captured
-	COMPLIANCE_FACTOR_ON_STATE_CONTROLLER_CHANGE = -0.5,	-- compliance factor that applies when the state controller changes (in between allies, compliance is zeroed if it is taken by original country)
-	RESISTANCE_COOLDOWN_WHEN_DISABLED = -0.25,				-- resistance cooldown when the state is taken back by its original owner (compliance is zeroed in that case)
+	INITIAL_STATE_RESISTANCE = 0,							-- initial resistance percentage of a state once it is captured
+	INITIAL_STATE_COMPLIANCE = 100,							-- initial compliance percentage of a state once it is captured
+	COMPLIANCE_FACTOR_ON_STATE_CONTROLLER_CHANGE = 0,	-- compliance factor that applies when the state controller changes (in between allies, compliance is zeroed if it is taken by original country)
+	RESISTANCE_COOLDOWN_WHEN_DISABLED = 0,				-- resistance cooldown when the state is taken back by its original owner (compliance is zeroed in that case)
 	
-	RESISTANCE_TARGET_BASE = 35.0,							-- base resistance target percentage
+	RESISTANCE_TARGET_BASE = 0,							-- base resistance target percentage
 	
-	RESISTANCE_TARGET_MODIFIER_HAS_CLAIM = -5.0,			-- resistance target modifier in % for states we have claim
+	RESISTANCE_TARGET_MODIFIER_HAS_CLAIM = 0,			-- resistance target modifier in % for states we have claim
 
-	RESISTANCE_TARGET_MODIFIER_PER_STABILITY_LOSS = 0.2,	-- resistance target modifier per stability below 100%
-	RESISTANCE_TARGET_MODIFIER_PER_COMPLIANCE = -0.5,		-- resistance target modifier per compliance %
+	RESISTANCE_TARGET_MODIFIER_PER_STABILITY_LOSS = 0,	-- resistance target modifier per stability below 100%
+	RESISTANCE_TARGET_MODIFIER_PER_COMPLIANCE = -100,		-- resistance target modifier per compliance %
 	
 	RESISTANCE_TARGET_MODIFIER_IS_AT_PEACE = -10.0,			-- resistance target modifier when we are at peace
 	
@@ -390,24 +390,24 @@ NResistance = {
 		50,  20.0, -- 50 - ...
 	},
 
-	RESISTANCE_TARGET_MODIFIER_OCCUPIED_CAPITULATED = 10.0, -- resistance target modifier when the enemy is capitulated
+	RESISTANCE_TARGET_MODIFIER_OCCUPIED_CAPITULATED = 0, -- resistance target modifier when the enemy is capitulated
 	
-	RESISTANCE_TARGET_MODIFIER_OCCUPIED_IS_EXILE_MIN = 2.0,   -- min & max resistance target modifier resistance target modifier for exile countries. interpolated using legitimacy
-	RESISTANCE_TARGET_MODIFIER_OCCUPIED_IS_EXILE_MAX = 20.0,
+	RESISTANCE_TARGET_MODIFIER_OCCUPIED_IS_EXILE_MIN = 0,   -- min & max resistance target modifier resistance target modifier for exile countries. interpolated using legitimacy
+	RESISTANCE_TARGET_MODIFIER_OCCUPIED_IS_EXILE_MAX = 0,
 
-	RESISTANCE_TARGET_MODIFIER_POP_LOW = -20.0,			-- how much we reduce the resistance target
-	RESISTANCE_TARGET_MODIFIER_POP_VERY_LOW = -50.0,			-- resistance target modifier in % for states we have claim
+	RESISTANCE_TARGET_MODIFIER_POP_LOW = 0,			-- how much we reduce the resistance target
+	RESISTANCE_TARGET_MODIFIER_POP_VERY_LOW = 0,			-- resistance target modifier in % for states we have claim
 	
 	RESISTANCE_POP_LOW_CUTOFF = 10000,
 	RESISTANCE_POP_VERY_LOW_CUTOFF = 1000,
 
-	RESISTANCE_TARGET_MIN_CAP_FOR_NON_COMPLIANCE = 10, -- min resistance target will be capped to this percentage for non-compliance sources
+	RESISTANCE_TARGET_MIN_CAP_FOR_NON_COMPLIANCE = 0, -- min resistance target will be capped to this percentage for non-compliance sources
 	
-	RESISTANCE_DECAY_BASE = 0.1, -- base resistance decay
-	RESISTANCE_DECAY_MIN = 0.01, -- min resistance decay
+	RESISTANCE_DECAY_BASE = 100, -- base resistance decay
+	RESISTANCE_DECAY_MIN = 100, -- min resistance decay
 	RESISTANCE_DECAY_MAX = 100.0, -- nax resistance decay
 	
-	RESISTANCE_DECAY_MODIFIER_HAS_CLAIM = 25.0, -- resistance decay modifier for our claims
+	RESISTANCE_DECAY_MODIFIER_HAS_CLAIM = 0, -- resistance decay modifier for our claims
 	RESISTANCE_DECAY_MODIFIER_FACTORS = {  -- resistance decay modifier when resistance hits a certain percentage
 		10, -50, -- below 10% it has a -50% modifier on decay
 		20, -25, -- below 20% it has a -25% modifier on decay
@@ -415,26 +415,26 @@ NResistance = {
 	
 	MIN_DAMAGE_TO_GARRISONS_MODIFIER = 0.1, -- modifier that applies to losses from resistance attack to garrisons at most can be reduced to this amount
 	
-	RESISTANCE_GROWTH_BASE = 0.2, -- base resistance grow
-	RESISTANCE_GROWTH_MIN = 0.01, -- min resistance grow
-	RESISTANCE_GROWTH_MAX = 100.0, -- max resistance grow
+	RESISTANCE_GROWTH_BASE = 0, -- base resistance grow
+	RESISTANCE_GROWTH_MIN = 0, -- min resistance grow
+	RESISTANCE_GROWTH_MAX = 0, -- max resistance grow
 	
-	COMPLIANCE_GROWTH_BASE = 0.075, -- base compliance grow
-	COMPLIANCE_GROWTH_MIN = -100.0, -- min compliance grow
+	COMPLIANCE_GROWTH_BASE = 100, -- base compliance grow
+	COMPLIANCE_GROWTH_MIN = -0, -- min compliance grow
 	COMPLIANCE_GROWTH_MAX = 100.0, -- max compliance grow
 	
 	COMPLIANCE_GROWTH_IS_AT_PEACE = 10, -- compliance growth buff at peace
 	COMPLIANCE_GROWTH_HAS_CLAIM = 5, -- compliance growth buff if state has a claim
 	
-	COMPLIANCE_DECAY_AT_MAX_COMPLIANCE = -0.083, -- as compliance increases, it gets a decay rate depending on its value. compliance should stabilize at some value until its growth changes
-	COMPLIANCE_DECAY_PER_EXILE_LEGITIMACY = -0.015, -- higher legitimacy will give higher decay to compliance
+	COMPLIANCE_DECAY_AT_MAX_COMPLIANCE = 0, -- as compliance increases, it gets a decay rate depending on its value. compliance should stabilize at some value until its growth changes
+	COMPLIANCE_DECAY_PER_EXILE_LEGITIMACY = 0, -- higher legitimacy will give higher decay to compliance
 	
 	RESISTANCE_RATIO_DIFF_TO_SPREAD = 0.5, -- resistance diff between two neighbour states will spread by this ratio ( from highest resistance states to lower ones and it will only spread once to a state)
 	
-	RESISTANCE_ACTIVITY_CHANCE_AT_MAX_RESISTANCE = 0.312,
-	RESISTANCE_ACTIVITY_MIN_GARRISON_PENETRATE_CHANCE = 0.02,
+	RESISTANCE_ACTIVITY_CHANCE_AT_MAX_RESISTANCE = 0,
+	RESISTANCE_ACTIVITY_MIN_GARRISON_PENETRATE_CHANCE = 0,
 	
-	RESISTANCE_TARGET_TO_REENABLE_RESISTANCE = 10, -- resistance will be disabled once it reaches zero and will not be reenabled until resistance target reaches above this value
+	RESISTANCE_TARGET_TO_REENABLE_RESISTANCE = 0, -- resistance will be disabled once it reaches zero and will not be reenabled until resistance target reaches above this value
 	GARRISON_LOG_MAX_MONTHS = 12,				
 	
 	NO_COMPLIANCE_GAIN_ENABLE_LIMIT = 0.5, -- at least this ratio of no garrison law should be active in order to no compliance gain to take effect
@@ -450,8 +450,8 @@ NResistance = {
 	SUPPRESSION_NEEDED_LOWER_CAP = 10.0,	-- if resistance is lower than this value then we always act as though it is at the define for the purpose of suppresion requirements
 	SUPPRESSION_NEEDED_UPPER_CAP = 50.0, -- if resistance is greater than this value then we always act as though it is at the define for the purpose of suppresion requirements
 	
-	GARRISON_MANPOWER_LOST_BY_ATTACK = 0.018, 	-- Ratio of manpower lost by garrison at each attack on garrison (this number will be reduced by the hardness of garrison template)
-	GARRISON_EQUIPMENT_LOST_BY_ATTACK = 0.02, 	-- Ratio of equipment lost by garrison at each attack on garrison (this number will be reduced by the hardness of garrison template)
+	GARRISON_MANPOWER_LOST_BY_ATTACK = 0, 	-- Ratio of manpower lost by garrison at each attack on garrison (this number will be reduced by the hardness of garrison template)
+	GARRISON_EQUIPMENT_LOST_BY_ATTACK = 0, 	-- Ratio of equipment lost by garrison at each attack on garrison (this number will be reduced by the hardness of garrison template)
 	MAXIMUM_GARRISON_HARDNESS_WHEN_ATTACKED = 0.90,   -- Cap to be sure that garrison will suffer lost in attack, even with a almost 100% hardness
 	
 	FOREIGN_MANPOWER_MIN_THRESHOLD = 5000,		 -- The minimum number of Manpower that AI will accept to give at once, in order to avoid many weird little transfer.
@@ -524,7 +524,7 @@ NTechnology = {
 	MAX_SUBTECHS = 3,						-- Max number of sub technologies a technology can have.
 	BASE_RESEARCH_POINTS_SAVED = 30.0,		-- Base amount of research points a country can save per slot.
 	BASE_YEAR_AHEAD_PENALTY_FACTOR = 2,		-- Base year ahead penalty
-	BASE_TECH_COST = 85,					-- Base cost for a tech. multiplied with tech cost and ahead of time penalties
+	BASE_TECH_COST = 8500,					-- Base cost for a tech. multiplied with tech cost and ahead of time penalties
 	MAX_TECH_SHARING_BONUS = 0.5, 			-- Max technology sharing bonus that can be applied instantly
 	LICENSE_PRODUCTION_TECH_BONUS = 0.2,	-- License production tech bonus
 	
@@ -560,7 +560,7 @@ NBuildings = {
 	RADAR_INTEL_EFFECT = 40,			-- Province covered by radar increases intel by 10 (where 255 is max). Province may be covered by multiple radars, then the value sums up.
 	SABOTAGE_FACTORY_DAMAGE = 100.0,		-- How much damage takes a factory building in sabotage when state is occupied. Damage is mult by (1 + resistance strength), i.e. up to 2 x base value.
 	BASE_FACTORY_REPAIR = 0.3,			-- Default repair rate before factories are taken into account
-	BASE_FACTORY_REPAIR_FACTOR = 2.0,	-- Factory speed modifier when repairing.
+	BASE_FACTORY_REPAIR_FACTOR = 10,	-- Factory speed modifier when repairing.
 	SUPPLY_PORT_LEVEL_THROUGHPUT = 3,   -- supply throughput per level of naval base
 	INFRA_TO_SUPPLY = 2,
  	INFRA_TO_SUPPLY_COEFF = 1,
@@ -572,7 +572,7 @@ NBuildings = {
 },
 
 NDeployment = {
-	BASE_DEPLOYMENT_TRAINING = 1,		-- Base training done each day during deployment.
+	BASE_DEPLOYMENT_TRAINING = 0,		-- Base training done each day during deployment.
 },
 
 NMilitary = {
@@ -592,11 +592,11 @@ NMilitary = {
 	WAR_SCORE_AIR_WORTH_CAP = 1000,				-- the warscore limit we get from strategic bombing
 	WAR_SCORE_AIR_MONTHLY_FALLOFF = 10,			-- how much the warscore we got from the strategic bombing falls off every month.
 	
-	CORPS_COMMANDER_DIVISIONS_CAP = 24,			-- how many divisions a corps commander is limited to. 0 = inf, < 0 = blocked
-	DIVISION_SIZE_FOR_XP = 8,                   -- how many battalions should a division have to count as a full divisions when calculating XP stuff
-	CORPS_COMMANDER_ARMIES_CAP = -1,			-- how many armies a corps commander is limited to. 0 = inf, < 0 = blocked
-	FIELD_MARSHAL_DIVISIONS_CAP = 24,			-- how many divisions a field marshall is limited to. 0 = inf, < 0 = blocked
-	FIELD_MARSHAL_ARMIES_CAP = 5,				-- how many armies a field marshall is limited to. 0 = inf, < 0 = blocked
+	CORPS_COMMANDER_DIVISIONS_CAP = 0,			-- how many divisions a corps commander is limited to. 0 = inf, < 0 = blocked
+	DIVISION_SIZE_FOR_XP = 20,                   -- how many battalions should a division have to count as a full divisions when calculating XP stuff
+	CORPS_COMMANDER_ARMIES_CAP = 0,			-- how many armies a corps commander is limited to. 0 = inf, < 0 = blocked
+	FIELD_MARSHAL_DIVISIONS_CAP = 0,			-- how many divisions a field marshall is limited to. 0 = inf, < 0 = blocked
+	FIELD_MARSHAL_ARMIES_CAP = 0,				-- how many armies a field marshall is limited to. 0 = inf, < 0 = blocked
 
 	UNIT_LEADER_GENERATION_CAPITAL_CONTINENT_FACTOR = 100, --Integer factor to multiply manpower.
 
@@ -607,13 +607,13 @@ NMilitary = {
 	MAX_DIVISION_SUPPORT_WIDTH = 1,			-- Max width of support in division designer.
 	MAX_DIVISION_SUPPORT_HEIGHT = 5,		-- Max height of support in division designer.
 	
-	BASE_DIVISION_BRIGADE_GROUP_COST = 20, 	--Base cost to unlock a regiment slot,
-	BASE_DIVISION_BRIGADE_CHANGE_COST = 5,	--Base cost to change a regiment column.
+	BASE_DIVISION_BRIGADE_GROUP_COST = 10, 	--Base cost to unlock a regiment slot,
+	BASE_DIVISION_BRIGADE_CHANGE_COST = 10,	--Base cost to change a regiment column.
 	BASE_DIVISION_SUPPORT_SLOT_COST = 10, 	--Base cost to unlock a support slot
 	
-	MAX_ARMY_EXPERIENCE = 500,			--Max army experience a country can store
-	MAX_NAVY_EXPERIENCE = 500,			--Max navy experience a country can store
-	MAX_AIR_EXPERIENCE = 500,				--Max air experience a country can store
+	MAX_ARMY_EXPERIENCE = 0,			--Max army experience a country can store
+	MAX_NAVY_EXPERIENCE = 0,			--Max navy experience a country can store
+	MAX_AIR_EXPERIENCE = 0,				--Max air experience a country can store
 	
 	COMBAT_MINIMUM_TIME = 4,			-- Shortest time possible for a combat in hours
 	SPOTTING_QUALITY_DROP_HOURS = 4, 	-- Each X hours the intel quality drops after unit was spotted.
@@ -622,16 +622,16 @@ NMilitary = {
 	MIN_SUPPLY_CONSUMPTION = 0.05,					-- minimum value of supply consumption that a unit can get
 	
 	LAND_COMBAT_ORG_DICE_SIZE = 4,                 -- nr of damage dice
-	LAND_COMBAT_STR_DICE_SIZE = 2,                 -- nr of damage dice
+	LAND_COMBAT_STR_DICE_SIZE = 4,                 -- nr of damage dice
 	LAND_COMBAT_STR_DAMAGE_MODIFIER = 0.05,        -- global damage modifier... but some equipment is returned at end of battles see : EQUIPMENT_COMBAT_LOSS_FACTOR
 	LAND_COMBAT_ORG_DAMAGE_MODIFIER = 0.05,        -- global damage modifier
 	LAND_AIR_COMBAT_STR_DAMAGE_MODIFIER = 0.04,    -- air global damage modifier
 	LAND_AIR_COMBAT_ORG_DAMAGE_MODIFIER = 0.04,    -- global damage modifier
 	LAND_AIR_COMBAT_MAX_PLANES_PER_ENEMY_WIDTH = 3, -- how many CAS/TAC can enter a combat depending on enemy width there
-	LAND_COMBAT_STR_ARMOR_ON_SOFT_DICE_SIZE = 2,   -- extra damage dice if our armor outclasses enemy
-	LAND_COMBAT_ORG_ARMOR_ON_SOFT_DICE_SIZE = 6,   -- extra damage dice if our armor outclasses enemy
-	LAND_COMBAT_STR_ARMOR_DEFLECTION_FACTOR = 0.5, -- damage reduction if armor outclassing enemy
-	LAND_COMBAT_ORG_ARMOR_DEFLECTION_FACTOR = 0.5, -- damage reduction if armor outclassing enemy
+	LAND_COMBAT_STR_ARMOR_ON_SOFT_DICE_SIZE = 4,   -- extra damage dice if our armor outclasses enemy
+	LAND_COMBAT_ORG_ARMOR_ON_SOFT_DICE_SIZE = 5,   -- extra damage dice if our armor outclasses enemy
+	LAND_COMBAT_STR_ARMOR_DEFLECTION_FACTOR = 0.75, -- damage reduction if armor outclassing enemy
+	LAND_COMBAT_ORG_ARMOR_DEFLECTION_FACTOR = 0.75, -- damage reduction if armor outclassing enemy
 	LAND_COMBAT_COLLATERAL_FACTOR = 0.005,		   -- Factor to scale collateral damage to infra and forts with.
 	LAND_COMBAT_FORT_DAMAGE_CHANCE = 5,		-- chance to get a hit to damage on forts. (out of 100)
 	ATTRITION_DAMAGE_ORG = 0.1,					   -- damage from attrition to Organisation
@@ -639,7 +639,7 @@ NMilitary = {
 	ATTRITION_EQUIPMENT_PER_TYPE_LOSS_CHANCE = 0.1, -- Chance for loosing equipment when suffer attrition. Scaled up the stronger attrition is. Then scaled down by equipment reliability.
 	ATTRITION_WHILE_MOVING_FACTOR = 1,
 	BASE_CHANCE_TO_AVOID_HIT = 90,                 -- Base chance to avoid hit if defences left.
-	CHANCE_TO_AVOID_HIT_AT_NO_DEF = 60,	           -- chance to avoid hit if no defences left.
+	CHANCE_TO_AVOID_HIT_AT_NO_DEF = 80,	           -- chance to avoid hit if no defences left.
 	COMBAT_MOVEMENT_SPEED = 0.33,	               -- speed reduction base modifier in combat
 	TACTIC_SWAP_FREQUENCEY = 12,                   -- hours between tactic swaps
 	INITIATIVE_PICK_COUNTER_ADVANTAGE_FACTOR  = 0.35, -- advantage per leader level for picking a counter
@@ -647,16 +647,16 @@ NMilitary = {
 	ADDITIONAL_COMBAT_WIDTH = 40,                  -- more opened up by support attack
 	AMPHIBIOUS_INVADE_MOVEMENT_COST = 24.0,        -- total progress cost of movement while amphibious invading
 	LAND_SPEED_MODIFIER = 0.05,                    -- basic speed control
-	RIVER_CROSSING_PENALTY = -0.3,                 -- small river crossing
-	RIVER_CROSSING_PENALTY_LARGE = -0.6,           -- large river crossing
-	RIVER_CROSSING_SPEED_PENALTY = -0.25,           -- small river crossing
-	RIVER_CROSSING_SPEED_PENALTY_LARGE = -0.5,     -- large river crossing
+	RIVER_CROSSING_PENALTY = -0.2,                 -- small river crossing
+	RIVER_CROSSING_PENALTY_LARGE = -0.4,           -- large river crossing
+	RIVER_CROSSING_SPEED_PENALTY = -0.4,           -- small river crossing
+	RIVER_CROSSING_SPEED_PENALTY_LARGE = -0.8,     -- large river crossing
 	RIVER_SMALL_START_INDEX = 0,                   -- color indices for rivers
 	RIVER_SMALL_STOP_INDEX = 6,
 	RIVER_LARGE_STOP_INDEX = 11,
 	BASE_FORT_PENALTY = -0.15, 					   -- fort penalty
-	MULTIPLE_COMBATS_PENALTY = -0.5,               -- defender penalty if attacked from multiple directions
-	DIG_IN_FACTOR = 0.02,						   -- bonus factor for each dug-in level
+	MULTIPLE_COMBATS_PENALTY = -0.8,               -- defender penalty if attacked from multiple directions
+	DIG_IN_FACTOR = 0.01,						   -- bonus factor for each dug-in level
 	ARMY_LEADER_XP_GAIN_PER_UNIT_IN_COMBAT = 0.1, -- XP gain per unit in combat
 	CONSTANT_XP_RATIO_FOR_MULTIPLE_LEADERS_IN_SAME_COMBAT = 0.5, -- if there are multiple leaders in same combat, each one gets thisratio + (1-thisratio)/num leaders. amount of xp each general gets scales 1 0.75 0.66 etc for 1 2 3 generals
 	BASE_LEADER_TRAIT_GAIN_XP = 0.45,			   -- Base xp gain for traits per hour for armies
@@ -690,10 +690,10 @@ NMilitary = {
 	EXPEDITIONARY_FIELD_EXPERIENCE_SCALE = 0.5,		-- reduction factor in Xp from expeditionary forces
 	LEND_LEASE_FIELD_EXPERIENCE_SCALE = 0.005,		-- Experience scale for lend leased equipment used in combat.
 	LEADER_EXPERIENCE_SCALE = 1.0,
-	SLOWEST_SPEED = 4,
+	SLOWEST_SPEED = 2,
 	REINFORCEMENT_REQUEST_MAX_WAITING_DAYS = 14,   -- Every X days the equipment will be sent, regardless if still didn't produced all that has been requested.
 	REINFORCEMENT_REQUEST_DAYS_FREQUENCY = 7,	   -- How many days must pass until we may give another reinforcement request
-	EXPERIENCE_COMBAT_FACTOR = 0.25,
+	EXPERIENCE_COMBAT_FACTOR = 0.05,
 	ALERT_VERY_LOW_SUPPLY_LEVEL = 0.3,			   -- At which point we show up the low and very low supply level alert. Value is in % of supplies supported vs required.
 	ALERT_LOW_SUPPLY_LEVEL = 0.9,
 	UNIT_DIGIN_CAP = 5,                           -- how "deep" you can dig you can dig in until hitting max bonus
@@ -704,11 +704,11 @@ NMilitary = {
 	PARACHUTE_DISRUPTED_EQUIPMENT_DIV = 1.5,	   -- When the transport plane was hit, we drop unit with reduced equipment. Penalty is higher as more hits was received (and AA guns was in the state).
 	PARACHUTE_DISRUPTED_MANPOWER_DIV = 1.9,	       -- When the transport plane was hit, we drop unit with reduced manpower. Penalty is higher as more hits was received (and AA guns was in the state).
 	PARACHUTE_DISRUPTED_STR_DIV = 2.2,			   -- When the transport plane was hit, we drop unit with reduced strength. Penalty is higher as more hits was received (and AA guns was in the state).
-	PARACHUTE_PENALTY_RANDOMNESS = 0.1,			   -- Random factor for str,manpower,eq penalties.
+	PARACHUTE_PENALTY_RANDOMNESS = 0,			   -- Random factor for str,manpower,eq penalties.
 	PARACHUTE_DISRUPTED_AA_PENALTY = 1,            -- How much the Air defence in the state (from AA buildings level * air_defence) is scaled to affect overall disruption (equipment,manpower,str).
-	PARACHUTE_COMPLETE_ORG = 0.1,				   -- Organisation value (in %) after unit being dropped, regardless if failed, disrupted, or successful.
+	PARACHUTE_COMPLETE_ORG = 1,				   -- Organisation value (in %) after unit being dropped, regardless if failed, disrupted, or successful.
 	PARACHUTE_ORG_REGAIN_PENALTY_DURATION = 120,   -- penalty in org regain after being parachuted. Value is in hours.
-	PARACHUTE_ORG_REGAIN_PENALTY_MULT = -0.8,	   -- penalty to org regain after being parachuted.
+	PARACHUTE_ORG_REGAIN_PENALTY_MULT = 0,	   -- penalty to org regain after being parachuted.
 	SHIP_MORALE_TO_ORG_REGAIN_BASE = 0.2,			   -- Base org regain per hour
 	BASE_NIGHT_ATTACK_PENALTY = -0.5,
 	EXILE_EQUIPMENT = 1.0,						   -- Amount of equipment to keep
@@ -722,8 +722,8 @@ NMilitary = {
 	MAX_OUT_OF_SUPPLY_DAYS = 30, 				   -- how many days of shitty supply until max penalty achieved
 	OUT_OF_SUPPLY_ATTRITION = 0.3,                 -- max attrition when out of supply
 	OUT_OF_SUPPLY_SPEED = -0.8,                    -- max speed reduction from supply
-	NON_CORE_SUPPLY_SPEED = -0.5,				   -- we are not running on our own VP supply so need to steal stuff along the way
-	NON_CORE_SUPPLY_AIR_SPEED = -0.25,			   -- we are not running on our own VP supply so need to steal stuff along the way, a bit less due to air supply
+	NON_CORE_SUPPLY_SPEED = 0,				   -- we are not running on our own VP supply so need to steal stuff along the way
+	NON_CORE_SUPPLY_AIR_SPEED = 0,			   -- we are not running on our own VP supply so need to steal stuff along the way, a bit less due to air supply
 	OUT_OF_SUPPLY_MORALE = -0.3,                   -- max org regain reduction from supply
 	TRAINING_ATTRITION = 0.06,		  			   -- amount of extra attrition from being in training
 	TRAINING_MIN_STRENGTH = 0.1,					-- if strength is less than this, the unit will pause training until it's been reinforced
@@ -741,7 +741,7 @@ NMilitary = {
 	PLANNING_DECAY = 0.01,
 	PLAYER_ORDER_PLANNING_DECAY = 0.03,				-- Amount of planning lost due to player manual order
 	PLANNING_GAIN = 0.02,
-	PLANNING_MAX = 0.3,                           	-- can get more from techs
+	PLANNING_MAX = 0.1,                           	-- can get more from techs
 	CIVILWAR_ORGANIZATION_FACTOR = 0.3,			  	-- Multiplier of org for both sides when civilwar.	
 	PLAN_CONSIDERED_GOOD = 0.25,					-- Plan evaluations above this value are considered more or less safe
 	PLAN_CONSIDERED_BAD = -0.25,					-- Plan evaluations below this value are considered unsafe
@@ -798,7 +798,7 @@ NMilitary = {
 	NUKE_MAX_DAMAGE_PERCENT = 0.9,					-- Minimum damage from nukes as a percentage of current strength/organisation
 	EQUIPMENT_REPLACEMENT_RATIO = 0.1,				-- Equipment min ratio after blocking the equipment type
 	NUKE_DELAY_HOURS = 12,							-- How many hours does it take for the nuclear drop to happen
-	PARADROP_PENALTY = -0.3, 						-- Combat penalty when recently paradropped
+	PARADROP_PENALTY = 0, 						-- Combat penalty when recently paradropped
 	PARADROP_HOURS = 48,							-- time paratroopers suffer penalties in combat
 	COMBAT_SUPPLY_LACK_IMPACT = -0.33,				-- combat penalty if out of supply
 	COMBAT_STACKING_START = 8,						-- at what nr of divisions stacking penalty starts
@@ -855,24 +855,24 @@ NMilitary = {
 	NAVY_LEADER_LEVEL_UP_STAT_WEIGHTS = {5, 5, 5, 5}, -- level up stat random base weights attack, defense, maneuvering, coordination
 	
 	UNIT_LEADER_INITIAL_TRAIT_SLOT = { 				-- trait slot for 0 level leader
-		1.0, -- field marshal
-		0.0, -- corps commander
-		1.0, -- navy general
-		0.0, -- operative
+		0, -- field marshal
+		0, -- corps commander
+		0, -- navy general
+		0, -- operative
 	}, 
 	
 	UNIT_LEADER_TRAIT_SLOT_PER_LEVEL = { 			-- num extra traits on each level
-		0.5, -- field marshal
-		0.5, -- corps commander
-		0.5, -- navy general
-		0.0, -- operative
+		0, -- field marshal
+		0, -- corps commander
+		0, -- navy general
+		0, -- operative
 	}, 
 	
 	HOURS_REQ_REJOIN_BORDER_WAR_FOR_INJURED_UNITS = 336, -- minimum hours required for units to rejoin border wars
 	
 	NEW_COMMANDER_RANDOM_PERSONALITY_TRAIT_CHANCES = {  -- chances to gain a personality trait for new generals
-		0.5, -- 50% for first trait
-		0.15  -- 15% for second trait after that
+		0, -- 50% for first trait
+		0  -- 15% for second trait after that
 	},
 	
 	NEW_COMMANDER_RANDOM_BASIC_TRAIT_CHANCES = {  -- chances to gain a basic trait for new generals
@@ -913,8 +913,8 @@ NMilitary = {
 	XP_DECAY_RATE_PER_HOUR_IN_COMBAT = 0.03,				-- you get reduced XP as combat drags
 	MIN_XP_RATE_TO_DECAY = 0.1,								-- minimum XP factor for dragged combats
 	
-	XP_GAIN_PER_OVERRUN_UNIT = 35.0,						-- fixed XP gain per overrun unit
-	XP_GAIN_FOR_SHATTERING = 35.0,                          -- fixed XP gain per shattered unit
+	XP_GAIN_PER_OVERRUN_UNIT = 0,						-- fixed XP gain per overrun unit
+	XP_GAIN_FOR_SHATTERING = 0,                          -- fixed XP gain per shattered unit
 
 	UNIT_UPKEEP_ATTRITION = 0.00,							--Constant attrition value applied to armies.
 
@@ -938,7 +938,7 @@ NMilitary = {
 	OUT_OF_FUEL_EQUIPMENT_MULT = 0.1,				-- ratio of the stats that you get from equipments that uses fuel and you lack it
 	OUT_OF_FUEL_SPEED_MULT = 0.4,					-- speed mult that armies get when out of fuel
 	OUT_OF_FUEL_TRAINING_XP_GAIN_MULT = 0.0,		-- xp gain mult from training when a unit is out of fuel
-	FUEL_CAPACITY_DEFAULT_HOURS = 96               -- default capacity if not specified
+	FUEL_CAPACITY_DEFAULT_HOURS = 192               -- default capacity if not specified
 },
 
 
@@ -1181,7 +1181,7 @@ NNavy = {
 	REPAIR_AND_RETURN_AMOUNT_SHIPS_HIGH = 0.8,						-- % of total damaged ships, that will be sent for repair-and-return in one call.
 	REPAIR_AND_RETURN_UNIT_DYING_STR = 0.2,							-- Str below this point is considering a single ship "dying", and a high priority to send to repair.
 	EXPERIENCE_LOSS_FACTOR = 1.00,                 					-- percentage of experienced solders who die when manpower is removed
-	NAVY_EXPENSIVE_IC = 5500,										-- How much IC is considering the fleet to be expensive. Those expensive will triger the alert, when are on low STR.
+	NAVY_EXPENSIVE_IC = 0,										-- How much IC is considering the fleet to be expensive. Those expensive will triger the alert, when are on low STR.
 	MISSION_MAX_REGIONS = 0,										-- Limit of the regions that can be assigned to naval mission. Set to 0 for unlimited.
 	CONVOY_EFFICIENCY_LOSS_MODIFIER = 1.25,							-- How much efficiency drops when losing convoys. If modifier is 0.5, then losing 100% of convoys in short period, the efficiency will drop by 50%.
 	CONVOY_EFFICIENCY_REGAIN_AFTER_DAYS = 7,						-- Convoy starts regaining it's efficiency after X days without any convoys being sink.
@@ -2465,7 +2465,7 @@ NFocus = {
 },
 
 NOperatives = {
-	AGENCY_CREATION_DAYS = 30,						-- Number of days needed to create an intelligence agency
+	AGENCY_CREATION_DAYS = 3000,						-- Number of days needed to create an intelligence agency
 	AGENCY_UPGRADE_DAYS = 30,						-- Number of days needed to upgrade an intelligence agency
 	AGENCY_CREATION_FACTORIES = 5,					-- Number of factories used to create an intelligence agency
 	AGENCY_AI_BASE_NUM_FACTORIES = 25.0,				-- Used by AI to pace the upgrades. Formula : if( AGENCY_AI_BASE_NUM_FACTORIES <= num_civ_factories - num_upgrades * AGENCY_AI_PER_UPGRADE_FACTORIES )
