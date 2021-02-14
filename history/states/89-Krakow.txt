@@ -2,6 +2,7 @@ state={
 	id=89
 	name="STATE_89"
 
+
 	history={
 		victory_points = {
 			11411 1
@@ -9,14 +10,12 @@ state={
 		#victory_points = {
 		#	6483 1
 		#}
-		owner = POL
+		owner = GER
 		buildings = {
-			infrastructure = 5
-			air_base = 3
+			infrastructure = 8
 
 		}
-		add_core_of = POL
-		add_core_of = UKR
+		add_core_of = GER
 
 	}
 

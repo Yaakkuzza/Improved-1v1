@@ -6,14 +6,11 @@ state={
 	
 	state_category = rural
 	
-	resources={
-		oil=7 # was: 8
-	}
 
 	history={
 		owner = SOV
 		buildings = {
-			infrastructure = 1
+			infrastructure = 8
 			12530 = {
 				naval_base = 1
 			}

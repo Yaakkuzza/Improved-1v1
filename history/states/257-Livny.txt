@@ -6,14 +6,11 @@ state={
 	
 	state_category = rural
 	
-	resources={
-		chromium=7 # was: 10
-	}
 
 	history={
 		owner = SOV
 		buildings = {
-			infrastructure = 4
+			infrastructure = 8
 		}
 		add_core_of = SOV
 		victory_points = {

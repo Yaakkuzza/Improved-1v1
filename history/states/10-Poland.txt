@@ -6,7 +6,7 @@ state={
 	state_category = large_city
 
 	history={
-		owner = POL
+		owner = GER
 		victory_points = {
 			3544 25
 		}
@@ -14,13 +14,10 @@ state={
 			402 1
 		}
 		buildings = {
-			infrastructure = 7
-			arms_factory = 6
-			industrial_complex = 2
-			anti_air_building = 2
-			air_base = 5
+			infrastructure = 8
+
 		}
-		add_core_of = POL
+		add_core_of = GER
 	}
 
 	provinces={

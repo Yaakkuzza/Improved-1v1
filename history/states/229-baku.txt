@@ -1,9 +1,7 @@
 state={
 	id=229
 	name="STATE_229"
-	resources={
-		oil=70 # was: 126.000
-	}
+
 
 	history={
 		owner = SOV
@@ -14,13 +12,11 @@ state={
 			11674 1 
 		}
 		buildings = {
-			infrastructure = 4
-			industrial_complex = 1
-			fuel_silo = 1
-			air_base = 1
+			infrastructure = 8
+
 		}
 		add_core_of = SOV
-		add_core_of = AZR
+
 
 	}
 

@@ -12,11 +12,11 @@ state={
 			9288 10 
 		}
 		buildings = {
-			infrastructure = 5
-			air_base = 3
+			infrastructure = 8
+
 		}
 		add_core_of = SOV
-		add_core_of = BLR
+
 	}
 
 	provinces={

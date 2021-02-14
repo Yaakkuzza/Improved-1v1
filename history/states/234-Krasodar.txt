@@ -5,10 +5,7 @@ state={
 	manpower = 2903371
 	
 	state_category = city
-	resources={
-		tungsten=17 # was: 26
-		oil=12 # was: 18
-	}
+
 
 	history={
 		owner = SOV
@@ -22,11 +19,11 @@ state={
 			3734 5
 		}
 		buildings = {
-			infrastructure = 5
-			industrial_complex = 1
+			infrastructure = 8
+
 			719 = {
 				naval_base = 3
-				coastal_bunker = 1
+
 			}
 		}
 		add_core_of = SOV
